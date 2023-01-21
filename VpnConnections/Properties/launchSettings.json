@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "VPN Connections english": {
+      "commandName": "Project",
+      "commandLineArgs": "--show /culture en-us"
+    },
+    "VPN Verbindungen deutsch": {
+      "commandName": "Project",
+      "commandLineArgs": "/show -culture de-de"
+    }
+  }
+}

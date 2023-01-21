@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VpnConnections", "VpnConnections\VpnConnections.csproj", "{26B548A1-BF23-4FEE-9D9C-DC0A649C8FD7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2A78439-5936-4D8C-8BB4-7A8DDC762041}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{A1D63A3B-3390-458F-B5B2-ACCBF94A055D}"
+	ProjectSection(SolutionItems) = preProject
+		Images\Dialog_deutsch.png = Images\Dialog_deutsch.png
+		Images\Dialog_english.png = Images\Dialog_english.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{26B548A1-BF23-4FEE-9D9C-DC0A649C8FD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26B548A1-BF23-4FEE-9D9C-DC0A649C8FD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26B548A1-BF23-4FEE-9D9C-DC0A649C8FD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26B548A1-BF23-4FEE-9D9C-DC0A649C8FD7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A1D63A3B-3390-458F-B5B2-ACCBF94A055D} = {A2A78439-5936-4D8C-8BB4-7A8DDC762041}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FF118B5-305B-4E85-A055-974093D9F22F}
+	EndGlobalSection
+EndGlobal
