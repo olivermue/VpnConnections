@@ -8,6 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Title>VPN Connections</Title>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationIcon>Resources\VpnConnections.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +31,7 @@
     <Content Include="appSettings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\VpnConnections.ico" />
   </ItemGroup>
 
   <ItemGroup>
