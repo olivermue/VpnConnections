@@ -1,4 +1,6 @@
-﻿namespace VpnConnections.Helpers
+﻿using VpnConnections.Logging;
+
+namespace VpnConnections.Helpers
 {
     public static class Multiple
     {
@@ -19,8 +21,12 @@
                     maxRetries--;
 
                     if (maxRetries <= 0)
+                    {
+                        Logger.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}");
                         return defaultValueOnError;
+                    }
 
+                    Logger.LogInfo($"Exception occured. Sleep {interval} before next try.");
                     Thread.Sleep(interval);
                 }
             } while (true);
@@ -43,8 +49,12 @@
                     maxRetries--;
 
                     if (maxRetries <= 0)
+                    {
+                        Logger.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}");
                         return defaultValueOnError;
+                    }
 
+                    Logger.LogInfo($"Exception occured. Sleep {interval} before next try.");
                     await Task.Delay(interval);
                 }
             } while (true);

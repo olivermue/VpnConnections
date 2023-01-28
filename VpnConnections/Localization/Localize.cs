@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using VpnConnections.Logging;
 
 namespace VpnConnections.Localization
 {
@@ -8,8 +9,8 @@ namespace VpnConnections.Localization
         {
             var localized = Properties.Resources.ResourceManager.GetString(name);
 
-            if(localized is null)
-                Debug.WriteLine($"Needed translation: {name}");
+            if (localized is null)
+                Logger.LogWarning($"Needed translation: {name}");
 
             return localized
                 ?? name;

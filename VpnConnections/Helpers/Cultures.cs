@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using VpnConnections.Logging;
 
 namespace VpnConnections.Helpers
 {
@@ -21,6 +22,7 @@ namespace VpnConnections.Helpers
 
                 if (cultureFound != null)
                 {
+                    Logger.LogInfo($"Switch to culture {cultureFound.Name}");
                     Thread.CurrentThread.CurrentCulture = cultureFound;
                     Thread.CurrentThread.CurrentUICulture = cultureFound;
                 }

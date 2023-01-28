@@ -2,6 +2,7 @@
 using System.Net.NetworkInformation;
 using NETWORKLIST;
 using VpnConnections.Helpers;
+using VpnConnections.Logging;
 using VpnConnections.Ras;
 using Timer = System.Timers.Timer;
 
@@ -93,7 +94,7 @@ namespace VpnConnections.Vpn
 
         public void Dispose()
         {
-            ((IDisposable)timer).Dispose();
+            timer.Dispose();
             GC.SuppressFinalize(this);
         }
 
@@ -118,13 +119,16 @@ namespace VpnConnections.Vpn
             var file = PhonebookLocation();
             var lines = File.ReadLines(file);
 
-            return lines
+            var connections = lines
                 .Where(line => !string.IsNullOrEmpty(line))
                 .Select(line => line.Trim())
-                .Where(line => line.StartsWith("["))
-                .Where(line => line.EndsWith("]"))
+                .Where(line => line.StartsWith("[") && line.EndsWith("]"))
                 .Select(line => line[1..^1])
                 .ToList();
+
+            Logger.LogInfo($"Connections found: {string.Join(", ", connections)}");
+
+            return connections;
         }
 
         private TimeSpan GetDuration(NetworkInterface? networkInterface)
@@ -142,11 +146,16 @@ namespace VpnConnections.Vpn
             var networkConnectedTime = DateTime.FromFileTimeUtc((long)((ulong)pdwHighDateTimeConnected << 32 | pdwLowDateTimeConnected));
             networkConnectedTime = DateTime.SpecifyKind(networkConnectedTime, DateTimeKind.Local);
 
-            return DateTime.Now.Subtract(networkConnectedTime);
+            var duration = DateTime.Now.Subtract(networkConnectedTime);
+            Logger.LogInfo($"Calculated duration: {duration}");
+
+            return duration;
         }
 
         private void OnRasDial(int _, RasConnectionState rasConnectionState, int __)
         {
+            Logger.LogInfo($"RasDial: {rasConnectionState}");
+
             var newState = rasConnectionState switch
             {
                 RasConnectionState.Connected => ConnectionState.Connected,
@@ -156,6 +165,7 @@ namespace VpnConnections.Vpn
 
             if (ConnectionState != newState)
             {
+                Logger.LogInfo($"Update connection state: {newState}");
                 ConnectionState = newState;
                 PropertyChanged?.Invoke(this, ConnectionStatePropertyChangedArgs);
                 ConnectionStateChanged?.Invoke(this, EventArgs.Empty);
@@ -178,6 +188,8 @@ namespace VpnConnections.Vpn
 
                 if (firstRun || IsConnected != hasConnection)
                 {
+                    Logger.LogInfo($"Changed network state: {hasConnection}");
+
                     firstRun = false;
                     IsConnected = hasConnection;
                     PropertyChanged?.Invoke(this, IsConnectedPropertyChangedArgs);

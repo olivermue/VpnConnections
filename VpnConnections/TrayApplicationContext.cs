@@ -4,6 +4,7 @@ using VpnConnections.Dialogs;
 using VpnConnections.Drawing;
 using VpnConnections.DTOs;
 using VpnConnections.Helpers;
+using VpnConnections.Logging;
 using VpnConnections.Vpn;
 using Windows.UI.ViewManagement;
 using Timer = System.Windows.Forms.Timer;
@@ -103,6 +104,7 @@ namespace VpnConnections
 
         protected override void ExitThreadCore()
         {
+            Logger.LogInfo("Exit application");
             notifyIcon.Visible = false;
             base.ExitThreadCore();
         }
@@ -139,6 +141,7 @@ namespace VpnConnections
             if (File.Exists(defaultAppFile)
                 || enforceAppDataFolder)
             {
+                Logger.LogInfo($"Using setting at {defaultAppFile}");
                 return defaultAppFile;
             }
 
@@ -146,6 +149,7 @@ namespace VpnConnections
             var appFile = Path.GetFullPath(Properties.Resources.SettingsFilename);
             if (File.Exists(appFile))
             {
+                Logger.LogInfo($"Using setting at {defaultAppFile}");
                 return appFile;
             }
 
@@ -154,11 +158,16 @@ namespace VpnConnections
 
             // Check app folder
             if (File.Exists(appFile))
+            {
+                Logger.LogInfo($"Using setting at {appFile}");
                 return appFile;
+            }
 
             // None found, prepare app data folder for watcher
             Directory.CreateDirectory(Path.GetDirectoryName(defaultAppFile)!);
 
+            Logger.LogInfo("No settings found, fall back to default.");
+            Logger.LogInfo($"Using setting at {appFile}");
             return defaultAppFile;
         }
 
@@ -181,6 +190,8 @@ namespace VpnConnections
                 ? GetAccentColor()
                 : settings.TrayIconDisconnectedColor;
 
+            Logger.LogInfo($"Use settings from {settingsFilename}");
+
             vpnConnection.ObservedConnectionName = settings.ConnectionName;
             statusActiveIcon = CreateStatusIcon(connectedColor);
             statusInactiveIcon = CreateStatusIcon(disconnectedColor);
@@ -200,6 +211,7 @@ namespace VpnConnections
             if (showDialog
                 || dialogNotReachable)
             {
+                Logger.LogInfo("Going to show configuration dialog");
                 throttledExecution = configurationDialog.Show;
                 throttle.Start();
             }
@@ -214,6 +226,8 @@ namespace VpnConnections
 
         private void Execute(ClickAction clickAction)
         {
+            Logger.LogInfo($"Execute action {clickAction}");
+
             switch (clickAction)
             {
                 case ClickAction.ConnectOnly:
@@ -324,6 +338,7 @@ namespace VpnConnections
         private void OnSettingsChanged(object? sender, bool enforceAppDataFolder)
         {
             var settingsFilePath = GetSettingsFilePath(enforceAppDataFolder);
+            Logger.LogInfo($"Update settings in {settingsFilePath}");
             var json = JsonSerializer.Serialize(configurationDialog.Settings, serializerOptions);
             File.WriteAllText(settingsFilePath, json);
         }
@@ -341,6 +356,7 @@ namespace VpnConnections
 
             if (latestAccentColor != currentAccentColor)
             {
+                Logger.LogInfo($"Got updated accent color {currentAccentColor}");
                 ApplySettings();
                 latestAccentColor = currentAccentColor;
             }
@@ -361,6 +377,7 @@ namespace VpnConnections
 
         private void OnWatcherChanged(object? sender, FileSystemEventArgs e)
         {
+            Logger.LogInfo($"File watcher {e.ChangeType} {e.FullPath}");
             ApplySettings();
         }
 
@@ -368,10 +385,13 @@ namespace VpnConnections
         {
             notifyIcon.BalloonTipText = CreateMessage();
             notifyIcon.ShowBalloonTip(0);
+
+            Logger.LogInfo($"Show notification message: {notifyIcon.BalloonTipText}");
         }
 
         private void UpdateEditor()
         {
+            Logger.LogInfo("Update configuration dialog");
             configurationDialog.Settings = settings;
             configurationDialog.Icon = vpnConnection.IsConnected
                 ? statusActiveIcon
@@ -397,6 +417,7 @@ namespace VpnConnections
                 ? statusActiveIcon
                 : statusInactiveIcon;
 
+            Logger.LogInfo($"Update tray icon: {notifyIcon.Text}");
             configurationDialog.BeginInvoke(UpdateEditor);
 
             switch (settings.ShowNotification)
