@@ -64,7 +64,7 @@ namespace VpnConnections
 
             configurationDialog = new ConfigurationDialog();
             configurationDialog.SettingsChanged += OnSettingsChanged;
-            configurationDialog.QuitClicked += OnQuitClicked;
+            configurationDialog.ActionRequested += OnActionRequested;
             var _ = configurationDialog.Handle;
 
             vpnConnection = new VpnConnection();
@@ -73,7 +73,7 @@ namespace VpnConnections
 
             fileWatcher = new FileSystemWatcher
             {
-                Filter = GetSettingsFilePath(),
+                Filter = GetSettingsFilePath(false),
                 IncludeSubdirectories = false,
                 NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastWrite | NotifyFilters.Size,
                 Path = Directory.GetCurrentDirectory(),
@@ -127,21 +127,30 @@ namespace VpnConnections
             return Icons.CreateIcon(colorValue, Properties.Resources.StatusForeground, Properties.Resources.StatusBackground);
         }
 
-        private static string GetSettingsFilePath()
+        private static string GetSettingsFilePath(bool enforceAppDataFolder)
         {
             var appFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             var defaultAppFile = Path.Combine(appFolder, Application.ProductName, Properties.Resources.SettingsFilename);
 
+            if (enforceAppDataFolder)
+                Directory.CreateDirectory(Path.GetDirectoryName(defaultAppFile)!);
+
             // Check app data folder
-            if (File.Exists(defaultAppFile))
+            if (File.Exists(defaultAppFile)
+                || enforceAppDataFolder)
+            {
                 return defaultAppFile;
+            }
 
             // Check working directory
-            if (File.Exists(Properties.Resources.SettingsFilename))
-                return Properties.Resources.SettingsFilename;
+            var appFile = Path.GetFullPath(Properties.Resources.SettingsFilename);
+            if (File.Exists(appFile))
+            {
+                return appFile;
+            }
 
             var directory = Path.GetDirectoryName(Application.ExecutablePath);
-            var appFile = Path.Combine(directory!, Properties.Resources.SettingsFilename);
+            appFile = Path.Combine(directory!, Properties.Resources.SettingsFilename);
 
             // Check app folder
             if (File.Exists(appFile))
@@ -155,7 +164,7 @@ namespace VpnConnections
 
         private void ApplySettings()
         {
-            var settingsFilename = GetSettingsFilePath();
+            var settingsFilename = GetSettingsFilePath(false);
             var appSettings = !File.Exists(settingsFilename)
                 ? "{}"
                 : Multiple.Try(3, TimeSpan.FromMilliseconds(250),
@@ -244,6 +253,11 @@ namespace VpnConnections
             return Design.ColorConverter.From(Design.ColorConverter.From(color));
         }
 
+        private void OnActionRequested(object? sender, ClickAction action)
+        {
+            Execute(action);
+        }
+
         private void OnIconClick(object? sender, EventArgs e)
         {
             var mouseEventArgs = e as MouseEventArgs ?? new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0);
@@ -307,15 +321,11 @@ namespace VpnConnections
                 : statusInactiveIcon;
         }
 
-        private void OnQuitClicked(object? sender, EventArgs e)
+        private void OnSettingsChanged(object? sender, bool enforceAppDataFolder)
         {
-            Application.Exit();
-        }
-
-        private void OnSettingsChanged(object? sender, EventArgs e)
-        {
+            var settingsFilePath = GetSettingsFilePath(enforceAppDataFolder);
             var json = JsonSerializer.Serialize(configurationDialog.Settings, serializerOptions);
-            File.WriteAllText(GetSettingsFilePath(), json);
+            File.WriteAllText(settingsFilePath, json);
         }
 
         private void OnThrottleTick(object? sender, EventArgs e)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,28 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="$this.Text" xml:space="preserve">
-    <value>VPN Verbindungen</value>
-  </data>
-  <data name="toolStripMenuItemQuit.Text" xml:space="preserve">
-    <value>&amp;Beenden</value>
-  </data>
-  <data name="toolStripMenuItemConnect.Text" xml:space="preserve">
-    <value>&amp;Verbinden</value>
-  </data>
-  <data name="toolStripMenuItemDisconnect.Text" xml:space="preserve">
-    <value>&amp;Trennen</value>
-  </data>
-  <data name="toolStripMenuItemToggle.Text" xml:space="preserve">
-    <value>Verbindung &amp;umschalten</value>
-  </data>
-  <data name="splitButtonActions.Text" xml:space="preserve">
-    <value>&amp;Schließen</value>
-  </data>
-  <data name="splitButtonSave.Text" xml:space="preserve">
-    <value>&amp;Speichern</value>
-  </data>
-  <data name="toolStripMenuItemSaveInAppData.Text" xml:space="preserve">
-    <value>Speichern in &amp;AppData</value>
-  </data>
 </root>

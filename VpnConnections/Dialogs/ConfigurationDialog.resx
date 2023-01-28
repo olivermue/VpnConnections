@@ -89,66 +89,120 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;propertyGrid.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
-  <data name="buttonQuit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="buttonQuit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>24, 27</value>
-  </data>
-  <data name="buttonQuit.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 3, 2, 3</value>
-  </data>
-  <data name="buttonQuit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 63</value>
-  </data>
-  <data name="buttonQuit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="buttonQuit.Text" xml:space="preserve">
-    <value>&amp;Quit</value>
-  </data>
-  <data name="&gt;&gt;buttonQuit.Name" xml:space="preserve">
-    <value>buttonQuit</value>
-  </data>
-  <data name="&gt;&gt;buttonQuit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;buttonQuit.Parent" xml:space="preserve">
-    <value>panelBottom</value>
-  </data>
-  <data name="&gt;&gt;buttonQuit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="buttonSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="splitButtonSave.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="buttonSave.Location" type="System.Drawing.Point, System.Drawing">
+  <metadata name="contextMenuStripSave.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>443, 17</value>
+  </metadata>
+  <data name="toolStripMenuItemSaveInAppData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>335, 48</value>
+  </data>
+  <data name="toolStripMenuItemSaveInAppData.Text" xml:space="preserve">
+    <value>Save in &amp;AppData</value>
+  </data>
+  <data name="contextMenuStripSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 107</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripSave.Name" xml:space="preserve">
+    <value>contextMenuStripSave</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splitButtonSave.Location" type="System.Drawing.Point, System.Drawing">
     <value>957, 27</value>
   </data>
-  <data name="buttonSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+  <data name="splitButtonSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 3, 2, 3</value>
   </data>
-  <data name="buttonSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 63</value>
+  <data name="splitButtonSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>188, 63</value>
   </data>
-  <data name="buttonSave.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="splitButtonSave.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
-  <data name="buttonSave.Text" xml:space="preserve">
+  <data name="splitButtonSave.Text" xml:space="preserve">
     <value>&amp;Save</value>
   </data>
-  <data name="&gt;&gt;buttonSave.Name" xml:space="preserve">
-    <value>buttonSave</value>
+  <data name="&gt;&gt;splitButtonSave.Name" xml:space="preserve">
+    <value>splitButtonSave</value>
   </data>
-  <data name="&gt;&gt;buttonSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;splitButtonSave.Type" xml:space="preserve">
+    <value>VpnConnections.Design.SplitButton, VpnConnections, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;buttonSave.Parent" xml:space="preserve">
+  <data name="&gt;&gt;splitButtonSave.Parent" xml:space="preserve">
     <value>panelBottom</value>
   </data>
-  <data name="&gt;&gt;buttonSave.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;splitButtonSave.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="contextMenuStripActions.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="toolStripMenuItemConnect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 48</value>
+  </data>
+  <data name="toolStripMenuItemConnect.Text" xml:space="preserve">
+    <value>C&amp;onnect</value>
+  </data>
+  <data name="toolStripMenuItemDisconnect.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 48</value>
+  </data>
+  <data name="toolStripMenuItemDisconnect.Text" xml:space="preserve">
+    <value>&amp;Disconnect</value>
+  </data>
+  <data name="toolStripMenuItemToggle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 48</value>
+  </data>
+  <data name="toolStripMenuItemToggle.Text" xml:space="preserve">
+    <value>&amp;Toggle connection state</value>
+  </data>
+  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 6</value>
+  </data>
+  <data name="toolStripMenuItemQuit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>389, 48</value>
+  </data>
+  <data name="toolStripMenuItemQuit.Text" xml:space="preserve">
+    <value>&amp;Quit</value>
+  </data>
+  <data name="contextMenuStripActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>390, 202</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripActions.Name" xml:space="preserve">
+    <value>contextMenuStripActions</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripActions.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splitButtonActions.Location" type="System.Drawing.Point, System.Drawing">
+    <value>24, 27</value>
+  </data>
+  <data name="splitButtonActions.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 3, 2, 3</value>
+  </data>
+  <data name="splitButtonActions.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 63</value>
+  </data>
+  <data name="splitButtonActions.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="splitButtonActions.Text" xml:space="preserve">
+    <value>&amp;Close</value>
+  </data>
+  <data name="&gt;&gt;splitButtonActions.Name" xml:space="preserve">
+    <value>splitButtonActions</value>
+  </data>
+  <data name="&gt;&gt;splitButtonActions.Type" xml:space="preserve">
+    <value>VpnConnections.Design.SplitButton, VpnConnections, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;splitButtonActions.Parent" xml:space="preserve">
+    <value>panelBottom</value>
+  </data>
+  <data name="&gt;&gt;splitButtonActions.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <data name="panelBottom.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
@@ -176,7 +230,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panelBottom.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -402,6 +456,42 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>VPN Connections</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveInAppData.Name" xml:space="preserve">
+    <value>toolStripMenuItemSaveInAppData</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemSaveInAppData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemConnect.Name" xml:space="preserve">
+    <value>toolStripMenuItemConnect</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemConnect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemDisconnect.Name" xml:space="preserve">
+    <value>toolStripMenuItemDisconnect</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemDisconnect.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemToggle.Name" xml:space="preserve">
+    <value>toolStripMenuItemToggle</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemToggle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator.Name" xml:space="preserve">
+    <value>toolStripSeparator</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemQuit.Name" xml:space="preserve">
+    <value>toolStripMenuItemQuit</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemQuit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ConfigurationDialog</value>

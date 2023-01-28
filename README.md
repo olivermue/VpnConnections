@@ -1,8 +1,7 @@
 # VPN Connections
 A little helper tool that shows the current state of the selected VPN connection as tray icon.
 
-![Configuration Dialog](Images/Dialog_english.png "Configuration Dialog")
-
+<img src="Images/Dialog_english.png" alt="Configuration Dialog" width="450"/>
 
 The tool is customizable and you can configure the following settings:
 - The name of the connection that should be tracked.
@@ -16,7 +15,4 @@ Additionally the tool has two command line arguments:
 - `-show` will on startup automatically show the configuration dialog.
 - `-culture` let you define the current language of the tool. English will be taken by default or if the desired language is not available. Currently additionally available is German only.
 
-<br/>
-<br/>
-
-![Configuration Dialog German](Images/Dialog_deutsch.png "Configuration Dialog German")
+<img src="Images/Dialog_deutsch.png" alt="Configuration Dialog German" width="450"/>
