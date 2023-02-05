@@ -72,12 +72,13 @@ namespace VpnConnections
             vpnConnection.IsConnectedChanged += OnVpnIsConnectedChanged;
             vpnConnection.ConnectionStateChanged += OnVpnConnectionStateChanged;
 
+            var appFile = GetSettingsFilePath(false);
             fileWatcher = new FileSystemWatcher
             {
-                Filter = GetSettingsFilePath(false),
+                Filter = Path.GetFileName(appFile),
                 IncludeSubdirectories = false,
                 NotifyFilter = NotifyFilters.CreationTime | NotifyFilters.LastWrite | NotifyFilters.Size,
-                Path = Directory.GetCurrentDirectory(),
+                Path = Path.GetDirectoryName(appFile)!,
             };
             fileWatcher.Changed += OnWatcherChanged;
             fileWatcher.Created += OnWatcherChanged;
