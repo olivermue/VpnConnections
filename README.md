@@ -1,11 +1,11 @@
 # VPN Connections
 A little helper tool that shows the current state of the selected VPN connection as tray icon.
 
-<img src="Images/TrayIcon.gif" alt="" width="100"/>
+<img src="Images/TrayIcon.gif" alt="" width="127"/>
 
 Additionally you can configure the appearance and behaviour of the tray icon:
 
-<img src="Images/Dialog_english.png" alt="Configuration Dialog" width="450"/>
+<img src="Images/Dialog_english.png" alt="Configuration Dialog" width="446"/>
 
 The tool is customizable and you can configure the following settings:
 - The name of the connection that should be tracked.
@@ -30,4 +30,4 @@ Additionally the tool has three command line arguments:
     - Multiple.Try
     - Timer 
 
-<img src="Images/Dialog_deutsch.png" alt="Configuration Dialog German" width="450"/>
+<img src="Images/Dialog_deutsch.png" alt="Configuration Dialog German" width="446"/>
