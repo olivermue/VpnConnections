@@ -141,4 +141,7 @@
   <data name="toolStripMenuItemSaveInAppData.Text" xml:space="preserve">
     <value>Speichern in &amp;AppData</value>
   </data>
+  <data name="toolStripMenuItemOpenSettingsFolder.Text" xml:space="preserve">
+    <value>Öffne Settings &amp;Ordner</value>
+  </data>
 </root>

@@ -18,6 +18,8 @@ namespace VpnConnections.Dialogs
 
         public event EventHandler<ClickAction>? ActionRequested;
 
+        public event EventHandler? OpenSettingsFolderRequested;
+
         public event EventHandler<bool>? SettingsChanged;
 
         public VpnConnectionSettings Settings
@@ -82,6 +84,12 @@ namespace VpnConnections.Dialogs
             ActionRequested?.Invoke(this, ClickAction.DisconnectOnly);
         }
 
+        private void OnButtonOpenSettingsFolderClick(object sender, EventArgs e)
+        {
+            logger.LogInfo("Button open settings folder clicked");
+            OpenSettingsFolderRequested?.Invoke(this, EventArgs.Empty);
+        }
+
         private void OnButtonQuitClick(object sender, EventArgs e)
         {
             logger.LogInfo("Button quit clicked");
@@ -93,6 +101,12 @@ namespace VpnConnections.Dialogs
         {
             logger.LogInfo("Button save clicked");
             ApplySettingsIfChanged();
+        }
+
+        private void OnButtonSaveInAppDataClick(object sender, EventArgs e)
+        {
+            logger.LogInfo("Button save in AppData clicked");
+            ApplySettingsIfChanged(true);
         }
 
         private void OnButtonToggleClick(object sender, EventArgs e)

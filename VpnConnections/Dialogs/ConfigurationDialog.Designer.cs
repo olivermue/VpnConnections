@@ -30,22 +30,34 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationDialog));
+            this.toolStripSeparatorSave = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparatorAction = new System.Windows.Forms.ToolStripSeparator();
             this.propertyGrid = new System.Windows.Forms.PropertyGrid();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.splitButtonSave = new VpnConnections.Design.SplitButton();
             this.contextMenuStripSave = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemSaveInAppData = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemOpenSettingsFolder = new System.Windows.Forms.ToolStripMenuItem();
             this.splitButtonActions = new VpnConnections.Design.SplitButton();
             this.contextMenuStripActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemConnect = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemDisconnect = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemToggle = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItemQuit = new System.Windows.Forms.ToolStripMenuItem();
             this.panelBottom.SuspendLayout();
             this.contextMenuStripSave.SuspendLayout();
             this.contextMenuStripActions.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // toolStripSeparatorSave
+            // 
+            this.toolStripSeparatorSave.Name = "toolStripSeparatorSave";
+            resources.ApplyResources(this.toolStripSeparatorSave, "toolStripSeparatorSave");
+            // 
+            // toolStripSeparatorAction
+            // 
+            this.toolStripSeparatorAction.Name = "toolStripSeparatorAction";
+            resources.ApplyResources(this.toolStripSeparatorAction, "toolStripSeparatorAction");
             // 
             // propertyGrid
             // 
@@ -74,7 +86,9 @@
             // 
             this.contextMenuStripSave.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.contextMenuStripSave.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSaveInAppData});
+            this.toolStripMenuItemSaveInAppData,
+            this.toolStripSeparatorSave,
+            this.toolStripMenuItemOpenSettingsFolder});
             this.contextMenuStripSave.Name = "contextMenuStripSave";
             this.contextMenuStripSave.ShowImageMargin = false;
             this.contextMenuStripSave.ShowItemToolTips = false;
@@ -85,6 +99,12 @@
             this.toolStripMenuItemSaveInAppData.Name = "toolStripMenuItemSaveInAppData";
             resources.ApplyResources(this.toolStripMenuItemSaveInAppData, "toolStripMenuItemSaveInAppData");
             this.toolStripMenuItemSaveInAppData.Click += new System.EventHandler(this.OnButtonSaveInAppDataClick);
+            // 
+            // toolStripMenuItemOpenSettingsFolder
+            // 
+            this.toolStripMenuItemOpenSettingsFolder.Name = "toolStripMenuItemOpenSettingsFolder";
+            resources.ApplyResources(this.toolStripMenuItemOpenSettingsFolder, "toolStripMenuItemOpenSettingsFolder");
+            this.toolStripMenuItemOpenSettingsFolder.Click += new System.EventHandler(this.OnButtonOpenSettingsFolderClick);
             // 
             // splitButtonActions
             // 
@@ -102,7 +122,7 @@
             this.toolStripMenuItemConnect,
             this.toolStripMenuItemDisconnect,
             this.toolStripMenuItemToggle,
-            this.toolStripSeparator,
+            this.toolStripSeparatorAction,
             this.toolStripMenuItemQuit});
             this.contextMenuStripActions.Name = "contextMenuStrip";
             this.contextMenuStripActions.ShowImageMargin = false;
@@ -126,11 +146,6 @@
             this.toolStripMenuItemToggle.Name = "toolStripMenuItemToggle";
             resources.ApplyResources(this.toolStripMenuItemToggle, "toolStripMenuItemToggle");
             this.toolStripMenuItemToggle.Click += new System.EventHandler(this.OnButtonToggleClick);
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            resources.ApplyResources(this.toolStripSeparator, "toolStripSeparator");
             // 
             // toolStripMenuItemQuit
             // 
@@ -165,9 +180,11 @@
         private ToolStripMenuItem toolStripMenuItemConnect;
         private ToolStripMenuItem toolStripMenuItemDisconnect;
         private ToolStripMenuItem toolStripMenuItemToggle;
-        private ToolStripSeparator toolStripSeparator;
+        private ToolStripSeparator toolStripSeparatorAction;
         private Design.SplitButton splitButtonSave;
         private ContextMenuStrip contextMenuStripSave;
         private ToolStripMenuItem toolStripMenuItemSaveInAppData;
+        private ToolStripSeparator toolStripSeparatorSave;
+        private ToolStripMenuItem toolStripMenuItemOpenSettingsFolder;
     }
 }

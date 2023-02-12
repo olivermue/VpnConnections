@@ -57,6 +57,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="toolStripSeparatorSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>340, 6</value>
+  </data>
+  <data name="toolStripSeparatorAction.Size" type="System.Drawing.Size, System.Drawing">
+    <value>386, 6</value>
+  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="propertyGrid.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -65,7 +72,6 @@
   <data name="propertyGrid.HelpVisible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="propertyGrid.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -74,7 +80,7 @@
     <value>2, 3, 2, 3</value>
   </data>
   <data name="propertyGrid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1168, 794</value>
+    <value>1268, 994</value>
   </data>
   <data name="propertyGrid.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -98,13 +104,19 @@
     <value>443, 17</value>
   </metadata>
   <data name="toolStripMenuItemSaveInAppData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>335, 48</value>
+    <value>343, 48</value>
   </data>
   <data name="toolStripMenuItemSaveInAppData.Text" xml:space="preserve">
     <value>Save in &amp;AppData</value>
   </data>
+  <data name="toolStripMenuItemOpenSettingsFolder.Size" type="System.Drawing.Size, System.Drawing">
+    <value>343, 48</value>
+  </data>
+  <data name="toolStripMenuItemOpenSettingsFolder.Text" xml:space="preserve">
+    <value>&amp;Open settings folder</value>
+  </data>
   <data name="contextMenuStripSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>336, 107</value>
+    <value>344, 161</value>
   </data>
   <data name="&gt;&gt;contextMenuStripSave.Name" xml:space="preserve">
     <value>contextMenuStripSave</value>
@@ -113,7 +125,7 @@
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="splitButtonSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>957, 27</value>
+    <value>1057, 27</value>
   </data>
   <data name="splitButtonSave.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 3, 2, 3</value>
@@ -159,9 +171,6 @@
   </data>
   <data name="toolStripMenuItemToggle.Text" xml:space="preserve">
     <value>&amp;Toggle connection state</value>
-  </data>
-  <data name="toolStripSeparator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>386, 6</value>
   </data>
   <data name="toolStripMenuItemQuit.Size" type="System.Drawing.Size, System.Drawing">
     <value>389, 48</value>
@@ -209,13 +218,13 @@
     <value>Bottom</value>
   </data>
   <data name="panelBottom.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 794</value>
+    <value>0, 994</value>
   </data>
   <data name="panelBottom.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 3, 2, 3</value>
   </data>
   <data name="panelBottom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1168, 118</value>
+    <value>1268, 118</value>
   </data>
   <data name="panelBottom.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -239,7 +248,7 @@
     <value>17, 41</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1168, 912</value>
+    <value>1268, 1112</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -457,10 +466,28 @@
   <data name="$this.Text" xml:space="preserve">
     <value>VPN Connections</value>
   </data>
+  <data name="&gt;&gt;toolStripSeparatorSave.Name" xml:space="preserve">
+    <value>toolStripSeparatorSave</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparatorSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparatorAction.Name" xml:space="preserve">
+    <value>toolStripSeparatorAction</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparatorAction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripMenuItemSaveInAppData.Name" xml:space="preserve">
     <value>toolStripMenuItemSaveInAppData</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemSaveInAppData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemOpenSettingsFolder.Name" xml:space="preserve">
+    <value>toolStripMenuItemOpenSettingsFolder</value>
+  </data>
+  <data name="&gt;&gt;toolStripMenuItemOpenSettingsFolder.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemConnect.Name" xml:space="preserve">
@@ -480,12 +507,6 @@
   </data>
   <data name="&gt;&gt;toolStripMenuItemToggle.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator.Name" xml:space="preserve">
-    <value>toolStripSeparator</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;toolStripMenuItemQuit.Name" xml:space="preserve">
     <value>toolStripMenuItemQuit</value>

@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using VpnConnections.Dialogs;
 using VpnConnections.Drawing;
@@ -68,6 +69,7 @@ namespace VpnConnections
             configurationDialog = new ConfigurationDialog();
             configurationDialog.SettingsChanged += OnSettingsChanged;
             configurationDialog.ActionRequested += OnActionRequested;
+            configurationDialog.OpenSettingsFolderRequested += OnOpenSettingsFolderRequested;
             var _ = configurationDialog.Handle;
 
             vpnConnection = new VpnConnection();
@@ -96,6 +98,18 @@ namespace VpnConnections
             statusConnectingIcon = Properties.Resources.StatusActive;
             ApplySettings();
             CheckVisibility();
+        }
+
+        private void OnOpenSettingsFolderRequested(object? sender, EventArgs e)
+        {
+            var info = new ProcessStartInfo
+            {
+                FileName = "explorer",
+                Arguments = $"/e, /select, \"{GetSettingsFilePath(false)}\"",
+            };
+
+            logger.LogInfo($"Open explorer with {info.Arguments}");
+            Process.Start(info);
         }
 
         protected override void Dispose(bool disposing)
