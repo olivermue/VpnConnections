@@ -1,4 +1,4 @@
-﻿using VpnConnections.Logging;
+﻿using VpnConnections.Logs;
 
 namespace VpnConnections.Helpers
 {
@@ -22,11 +22,11 @@ namespace VpnConnections.Helpers
 
                     if (maxRetries <= 0)
                     {
-                        Logger.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}");
+                        Logging.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}", "Multiple.Try");
                         return defaultValueOnError;
                     }
 
-                    Logger.LogInfo($"Exception occured. Sleep {interval} before next try.");
+                    Logging.LogInfo($"Exception occured. Sleep {interval} before next try.", "Multiple.Try");
                     Thread.Sleep(interval);
                 }
             } while (true);
@@ -50,11 +50,11 @@ namespace VpnConnections.Helpers
 
                     if (maxRetries <= 0)
                     {
-                        Logger.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}");
+                        Logging.LogWarning($"Multiple.Try retries exceeded. Return default value {defaultValueOnError}", "Multiple.Try");
                         return defaultValueOnError;
                     }
 
-                    Logger.LogInfo($"Exception occured. Sleep {interval} before next try.");
+                    Logging.LogInfo($"Exception occured. Sleep {interval} before next try.", "Multiple.Try");
                     await Task.Delay(interval);
                 }
             } while (true);

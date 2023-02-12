@@ -1,9 +1,11 @@
-﻿using VpnConnections.Logging;
+﻿using VpnConnections.Logs;
 
 namespace VpnConnections.Helpers
 {
     public static class CommandLine
     {
+        private static readonly Logger logger = new Logger(nameof(CommandLine));
+
         public static string? GetArgumentValue(string name)
             => GetArgumentValue<string>(name);
 
@@ -16,11 +18,11 @@ namespace VpnConnections.Helpers
 
             if (!string.IsNullOrEmpty(value))
             {
-                Logger.LogInfo($"Argument {name} has value {value}");
+                logger.LogInfo($"Argument {name} has value {value}");
                 return (T)Convert.ChangeType(value, typeof(T));
             }
 
-            Logger.LogInfo($"Argument {name} not found, return default");
+            logger.LogInfo($"Argument {name} not found, return default");
             return default;
         }
 
@@ -34,12 +36,49 @@ namespace VpnConnections.Helpers
         {
             var arguments = Environment.GetCommandLineArgs();
 
-            var argumentsFound =  arguments
+            var argumentsFound = arguments
                 .Skip(1)
-                .Select(arg => arg.Trim(' ', '\t', '-', '/'));
+                .Select(arg => arg.Trim(' ', '\t', '-', '/'))
+                .JoinValues(',');
 
-            Logger.LogInfo($"Arguments: {string.Join(", ", argumentsFound)}");
+            logger.LogInfo($"Arguments: {string.Join(", ", argumentsFound)}");
             return argumentsFound;
+        }
+
+        private static IEnumerable<string> JoinValues(this IEnumerable<string?> values, char jointer)
+        {
+            var initialized = false;
+            string? previous = null;
+
+            foreach (var value in values)
+            {
+                if (!initialized)
+                {
+                    previous = value;
+                    initialized = true;
+                }
+                else
+                {
+                    if ((previous?.EndsWith(jointer) ?? false)
+                        || (value?.StartsWith(jointer) ?? false))
+                    {
+                        previous += value;
+                    }
+                    else
+                    {
+                        if (previous != null)
+                            yield return previous;
+
+                        previous = value;
+                    }
+                }
+            }
+
+            if (initialized
+                && previous != null)
+            {
+                yield return previous;
+            }
         }
     }
 }

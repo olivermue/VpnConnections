@@ -2,7 +2,7 @@
   "profiles": {
     "VPN Connections english": {
       "commandName": "Project",
-      "commandLineArgs": "--show /culture en-us"
+      "commandLineArgs": "--show /culture en-us -log"
     },
     "VPN Verbindungen deutsch": {
       "commandName": "Project",

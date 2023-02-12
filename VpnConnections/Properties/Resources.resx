@@ -241,4 +241,7 @@
   <data name="Accent color for disconnected" xml:space="preserve">
     <value>Accent color for disconnected</value>
   </data>
+  <data name="Enable logging" xml:space="preserve">
+    <value>Enable logging</value>
+  </data>
 </root>

@@ -180,6 +180,15 @@ namespace VpnConnections.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable logging.
+        /// </summary>
+        internal static string Enable_logging {
+            get {
+                return ResourceManager.GetString("Enable logging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string False {

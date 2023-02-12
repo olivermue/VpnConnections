@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using VpnConnections.Logging;
+using VpnConnections.Logs;
 
 namespace VpnConnections.Helpers
 {
@@ -10,7 +10,7 @@ namespace VpnConnections.Helpers
             public static void Set(bool enable)
             {
                 var rk = Registry.CurrentUser.OpenSubKey(Properties.Resources.RunKey, true);
-                Logger.LogInfo($"Set app autostart to {enable}");
+                Logging.LogInfo($"Set app autostart to {enable}", "Autostart.CurrentUser");
 
                 if (enable)
                     rk?.SetValue(Application.ProductName, Application.ExecutablePath);

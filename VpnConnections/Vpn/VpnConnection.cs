@@ -2,7 +2,7 @@
 using System.Net.NetworkInformation;
 using NETWORKLIST;
 using VpnConnections.Helpers;
-using VpnConnections.Logging;
+using VpnConnections.Logs;
 using VpnConnections.Ras;
 using Timer = System.Timers.Timer;
 
@@ -12,6 +12,8 @@ namespace VpnConnections.Vpn
     {
         private static readonly PropertyChangedEventArgs ConnectionStatePropertyChangedArgs = new PropertyChangedEventArgs(nameof(ConnectionState));
         private static readonly PropertyChangedEventArgs IsConnectedPropertyChangedArgs = new PropertyChangedEventArgs(nameof(IsConnected));
+        private static readonly Logger logger = new Logger(nameof(VpnConnection));
+        private static readonly Logger rasLogger = new Logger("RasDial");
 
         private readonly NetworkListManager networkListManager;
         private readonly Timer timer;
@@ -62,11 +64,15 @@ namespace VpnConnections.Vpn
             var result = NativeMethods.RasGetEntryDialParams(phonebook, ref dialParams, out _);
 
             if (result != 0)
+            {
+                rasLogger.LogError($"Failed to get entry for {dialParams.szEntryName}: {result}");
                 return;
+            }
 
             var extension = new RasDialExtensions();
 
             result = NativeMethods.RasDial(ref extension, phonebook, ref dialParams, NotifierType.RasDialFunc, OnRasDial, out connectionHandle);
+            rasLogger.LogInfo($"Dial {dialParams.szEntryName} got handle {connectionHandle} and result {result}");
         }
 
         public void Disconnect()
@@ -86,6 +92,7 @@ namespace VpnConnections.Vpn
                 do
                 {
                     result = NativeMethods.RasHangUp(connectionHandle);
+                    rasLogger.LogInfo($"HangUp handle {connectionHandle}: {result}");
                 } while (result == 0);
 
                 connectionHandle = IntPtr.Zero;
@@ -126,7 +133,7 @@ namespace VpnConnections.Vpn
                 .Select(line => line[1..^1])
                 .ToList();
 
-            Logger.LogInfo($"Connections found: {string.Join(", ", connections)}");
+            logger.LogInfo($"Connections found: {string.Join(", ", connections)}");
 
             return connections;
         }
@@ -147,14 +154,14 @@ namespace VpnConnections.Vpn
             networkConnectedTime = DateTime.SpecifyKind(networkConnectedTime, DateTimeKind.Local);
 
             var duration = DateTime.Now.Subtract(networkConnectedTime);
-            Logger.LogInfo($"Calculated duration: {duration}");
+            logger.LogInfo($"Calculated duration: {duration}");
 
             return duration;
         }
 
         private void OnRasDial(int _, RasConnectionState rasConnectionState, int __)
         {
-            Logger.LogInfo($"RasDial: {rasConnectionState}");
+            rasLogger.LogInfo($"Callback: {rasConnectionState}");
 
             var newState = rasConnectionState switch
             {
@@ -165,7 +172,7 @@ namespace VpnConnections.Vpn
 
             if (ConnectionState != newState)
             {
-                Logger.LogInfo($"Update connection state: {newState}");
+                logger.LogInfo($"Update connection state: {newState}");
                 ConnectionState = newState;
                 PropertyChanged?.Invoke(this, ConnectionStatePropertyChangedArgs);
                 ConnectionStateChanged?.Invoke(this, EventArgs.Empty);
@@ -185,10 +192,11 @@ namespace VpnConnections.Vpn
                     .FirstOrDefault();
 
                 var hasConnection = interfaceAvailable != null;
+                Logging.LogInfo($"{connectionName} connected: {hasConnection}", "Timer");
 
                 if (firstRun || IsConnected != hasConnection)
                 {
-                    Logger.LogInfo($"Changed network state: {hasConnection}");
+                    logger.LogInfo($"Changed network state: {hasConnection}");
 
                     firstRun = false;
                     IsConnected = hasConnection;

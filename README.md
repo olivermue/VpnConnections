@@ -18,6 +18,16 @@ The tool is customizable and you can configure the following settings:
 Additionally the tool has three command line arguments:
 - `-show` will on startup automatically show the configuration dialog.
 - `-culture` let you define the current language of the tool. English will be taken by default or if the desired language is not available. Currently additionally available is German only.
-- `-logfile` creates a logfile in `%AppData%\VpnConnections`
+- `-log` creates a logfile in `%AppData%\VpnConnections`. Additionally a filter can be defined as comma separated values (eg. `VpnConnection, RasDial`). Possible values are:
+    - TrayApplicationContext
+    - ConfigurationDialog 
+    - VpnConnection
+    - RasDial
+    - Autostart.CurrentUser
+    - CommandLine
+    - Cultures
+    - Localize
+    - Multiple.Try
+    - Timer 
 
 <img src="Images/Dialog_deutsch.png" alt="Configuration Dialog German" width="450"/>

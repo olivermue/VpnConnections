@@ -1,13 +1,14 @@
 ﻿using System.ComponentModel;
 using VpnConnections.Design;
 using VpnConnections.DTOs;
-using VpnConnections.Logging;
+using VpnConnections.Logs;
 
 namespace VpnConnections.Dialogs
 {
     public partial class ConfigurationDialog : Form
     {
         private static readonly IEqualityComparer<VpnConnectionSettings> settingsComparer = new VpnConnectionSettingsEqualityComparer();
+        private readonly Logger logger = new Logger(nameof(ConfigurationDialog));
         private VpnConnectionSettings settings = new VpnConnectionSettings();
 
         public ConfigurationDialog()
@@ -25,7 +26,10 @@ namespace VpnConnections.Dialogs
             set
             {
                 settings = value;
-                propertyGrid.SelectedObject = EditorSettings.From(value);
+                var editorSettings = EditorSettings.From(value);
+                editorSettings.EnableLogging = Logging.Enabled;
+                editorSettings.EnableLoggingChanged += OnEnabledLoggingChanged;
+                propertyGrid.SelectedObject = editorSettings;
             }
         }
 
@@ -46,7 +50,7 @@ namespace VpnConnections.Dialogs
             if (!settingsComparer.Equals(settings, newSettings)
                 || enforceAppDataFolder)
             {
-                Logger.LogInfo("Inform about settings change");
+                logger.LogInfo("Inform about settings change");
                 settings = newSettings;
                 SettingsChanged?.Invoke(this, enforceAppDataFolder);
             }
@@ -54,46 +58,46 @@ namespace VpnConnections.Dialogs
 
         private void OnButtonCloseClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button close clicked");
+            logger.LogInfo("Button close clicked");
             ApplySettingsIfChanged();
             Visible = false;
         }
 
         private void OnButtonConnectClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button connect clicked");
+            logger.LogInfo("Button connect clicked");
             ActionRequested?.Invoke(this, ClickAction.ConnectOnly);
         }
 
         private void OnButtonDisconnectClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button disconnect clicked");
+            logger.LogInfo("Button disconnect clicked");
             ActionRequested?.Invoke(this, ClickAction.DisconnectOnly);
         }
 
         private void OnButtonQuitClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button quit clicked");
+            logger.LogInfo("Button quit clicked");
             ApplySettingsIfChanged();
             ActionRequested?.Invoke(this, ClickAction.CloseApplication);
         }
 
         private void OnButtonSaveClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button save clicked");
+            logger.LogInfo("Button save clicked");
             ApplySettingsIfChanged();
         }
 
         private void OnButtonToggleClick(object sender, EventArgs e)
         {
-            Logger.LogInfo("Button toggle clicked");
+            logger.LogInfo("Button toggle clicked");
             ActionRequested?.Invoke(this, ClickAction.ToggleConnectionState);
         }
 
-        private void OnButtonSaveInAppDataClick(object sender, EventArgs e)
+        private void OnEnabledLoggingChanged(object? sender, EventArgs e)
         {
-            Logger.LogInfo("Button save in AppData clicked");
-            ApplySettingsIfChanged(true);
+            var settings = (EditorSettings)sender!;
+            Logging.Enabled = settings.EnableLogging;
         }
     }
 }

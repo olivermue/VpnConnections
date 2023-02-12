@@ -10,6 +10,9 @@ namespace VpnConnections.Design
     {
         private bool accentColorForConnected;
         private bool accentColorForDisonnected;
+        private bool enableLogging;
+
+        public event EventHandler? EnableLoggingChanged;
 
         [TypeConverter(typeof(ConnectionNameConverter))]
         [CategoryLocalized("Connection")]
@@ -92,6 +95,22 @@ namespace VpnConnections.Design
         [CategoryLocalized("Behaviour")]
         [DisplayNameLocalized("Tray icon right mouse button double click")]
         public ClickAction TrayIconRightMouseButtonDoubleClick { get; set; }
+
+        [TypeConverter(typeof(BooleanLocalizeConverter))]
+        [CategoryLocalized("Behaviour")]
+        [DisplayNameLocalized("Enable logging")]
+        public bool EnableLogging
+        {
+            get => enableLogging;
+            set
+            {
+                if (enableLogging != value)
+                {
+                    enableLogging = value;
+                    EnableLoggingChanged?.Invoke(this, EventArgs.Empty);
+                }
+            }
+        }
 
         public static EditorSettings From(VpnConnectionSettings source) => new EditorSettings
         {

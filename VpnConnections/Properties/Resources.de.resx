@@ -213,4 +213,7 @@
   <data name="Accent color for disconnected" xml:space="preserve">
     <value>Akzent Farbe bei Getrennt</value>
   </data>
+  <data name="Enable logging" xml:space="preserve">
+    <value>Logging aktivieren</value>
+  </data>
 </root>
