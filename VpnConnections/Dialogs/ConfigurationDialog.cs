@@ -42,6 +42,13 @@ namespace VpnConnections.Dialogs
             Visible = false;
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            // Fix awkward size problem
+            Height += 6;
+            base.OnShown(e);
+        }
+
         private void ApplySettingsIfChanged(bool enforceAppDataFolder = false)
         {
             var editorSettings = (EditorSettings)propertyGrid.SelectedObject;
