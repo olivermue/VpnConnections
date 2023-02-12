@@ -71,6 +71,7 @@ namespace VpnConnections.Vpn
 
             var extension = new RasDialExtensions();
 
+            connectionHandle = IntPtr.Zero;
             result = NativeMethods.RasDial(ref extension, phonebook, ref dialParams, NotifierType.RasDialFunc, OnRasDial, out connectionHandle);
             rasLogger.LogInfo($"Dial {dialParams.szEntryName} got handle {connectionHandle} and result {result}");
         }
