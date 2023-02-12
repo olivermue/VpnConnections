@@ -20,7 +20,7 @@ namespace VpnConnections.DTOs
                 && x.AccentColorForDisonnected == y.AccentColorForDisonnected
                 && x.TrayIconDisconnectedColor == y.TrayIconDisconnectedColor
                 && x.TrayIconLeftMouseButtonClick == y.TrayIconLeftMouseButtonClick
-                && x.TrayIconLeftMouseButtonDoubleClick == y.TrayIconLeftMouseButtonClick
+                && x.TrayIconLeftMouseButtonDoubleClick == y.TrayIconLeftMouseButtonDoubleClick
                 && x.TrayIconRightMouseButtonClick == y.TrayIconRightMouseButtonClick
                 && x.TrayIconRightMouseButtonDoubleClick == y.TrayIconRightMouseButtonDoubleClick
                 && x.TrayIconVisibility == y.TrayIconVisibility
