@@ -71,9 +71,17 @@ namespace VpnConnections.Vpn
 
             var extension = new RasDialExtensions();
 
-            connectionHandle = IntPtr.Zero;
-            result = NativeMethods.RasDial(ref extension, phonebook, ref dialParams, NotifierType.RasDialFunc, OnRasDial, out connectionHandle);
-            rasLogger.LogInfo($"Dial {dialParams.szEntryName} got handle {connectionHandle} and result {result}");
+            for (int i = 0; i < 3; i++)
+            {
+                connectionHandle = IntPtr.Zero;
+                result = NativeMethods.RasDial(ref extension, phonebook, ref dialParams, NotifierType.RasDialFunc, OnRasDial, out connectionHandle);
+                rasLogger.LogInfo($"Dial {dialParams.szEntryName} got handle {connectionHandle} and result {result}");
+
+                if (result == RasError.NO_ERROR)
+                    break;
+
+                DisconnectForced();
+            }
         }
 
         public void Disconnect()
@@ -86,18 +94,7 @@ namespace VpnConnections.Vpn
                 Connect();
             }
 
-            if (connectionHandle != IntPtr.Zero)
-            {
-                int result;
-
-                do
-                {
-                    result = NativeMethods.RasHangUp(connectionHandle);
-                    rasLogger.LogInfo($"HangUp handle {connectionHandle}: {result}");
-                } while (result == 0);
-
-                connectionHandle = IntPtr.Zero;
-            }
+            DisconnectForced();
         }
 
         public void Dispose()
@@ -137,6 +134,22 @@ namespace VpnConnections.Vpn
             logger.LogInfo($"Connections found: {string.Join(", ", connections)}");
 
             return connections;
+        }
+
+        private void DisconnectForced()
+        {
+            if (connectionHandle != IntPtr.Zero)
+            {
+                RasError result;
+
+                do
+                {
+                    result = NativeMethods.RasHangUp(connectionHandle);
+                    rasLogger.LogInfo($"HangUp handle {connectionHandle}: {result}");
+                } while (result == RasError.NO_ERROR);
+
+                connectionHandle = IntPtr.Zero;
+            }
         }
 
         private TimeSpan GetDuration(NetworkInterface? networkInterface)

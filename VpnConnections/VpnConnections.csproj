@@ -9,6 +9,7 @@
     <Title>VPN Connections</Title>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <ApplicationIcon>Resources\VpnConnections.ico</ApplicationIcon>
+    <FileVersion>1.4.0.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
